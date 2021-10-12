@@ -8,12 +8,11 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class EmployeeEntity<R> {
+public class EmployeeEntity {
     @Id
     private int id;
     private String name;
     private int salary;
 
-    public EmployeeEntity(R responseDTO, HttpStatus ok) {
-    }
+
 }

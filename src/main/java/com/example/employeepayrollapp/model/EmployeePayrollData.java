@@ -1,9 +1,13 @@
 package com.example.employeepayrollapp.model;
 
 import com.example.employeepayrollapp.dto.EmployeePayrollDTO;
+import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Data
+@Entity
 public class EmployeePayrollData {
 
     @Id
@@ -15,5 +19,9 @@ public class EmployeePayrollData {
         this.Id = Id;
         this.name = employeePayrollDTO.getName();
         this.salary = employeePayrollDTO.getSalary();
+    }
+
+    public EmployeePayrollData() {
+
     }
 }
