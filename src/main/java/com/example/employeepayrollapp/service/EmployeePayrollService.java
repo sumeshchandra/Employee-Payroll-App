@@ -18,11 +18,11 @@ public class EmployeePayrollService implements IEmployeePayrollService {
     private EmployeePayrollRepository employeePayrollRepository;
 
     public List<EmployeePayrollData> getEmployeePayrollData() {
-        return employeePayrollList;
+        return employeePayrollRepository.findAll();
     }
 
     public EmployeePayrollData getEmployeePayrollDataById(int Id) {
-        return employeePayrollList.stream().filter(id -> id.getEmployeeId() == Id).findFirst().orElseThrow(() ->
+        return employeePayrollRepository.findById(Id).orElseThrow(() ->
                 new EmployeePayrollException("Employee id not found"));
     }
 
@@ -42,8 +42,8 @@ public class EmployeePayrollService implements IEmployeePayrollService {
     }
 
     public void deleteEmployeePayrollData(int Id) {
-        employeePayrollList.stream().filter(id-> id.getEmployeeId() == Id).findFirst().orElseThrow(()->
-        new EmployeePayrollException("Employee Id Not Found"));
+        EmployeePayrollData employeePayrollDTO = this.getEmployeePayrollDataById(Id);
+        employeePayrollRepository.delete(employeePayrollDTO);
     }
 }
 

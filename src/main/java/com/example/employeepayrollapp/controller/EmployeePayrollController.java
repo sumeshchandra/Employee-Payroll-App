@@ -2,9 +2,7 @@ package com.example.employeepayrollapp.controller;
 
 import com.example.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.example.employeepayrollapp.dto.ResponseDTO;
-import com.example.employeepayrollapp.entity.EmployeeEntity;
 import com.example.employeepayrollapp.model.EmployeePayrollData;
-import com.example.employeepayrollapp.service.EmployeePayrollService;
 import com.example.employeepayrollapp.service.IEmployeePayrollService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +34,11 @@ public class EmployeePayrollController {
      */
     @RequestMapping("/get")
     public ResponseEntity<ResponseDTO> getEmployeePayrollData() {
-        List<EmployeePayrollData> empDataList = null;
+        List<EmployeePayrollData> empDataList ;
         empDataList = employeePayrollService.getEmployeePayrollData();
         ResponseDTO responseDTO = new ResponseDTO("Get Call Success", empDataList);
         log.info("get all data");
-        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
 
     }
 
@@ -75,8 +73,7 @@ public class EmployeePayrollController {
      */
     @PutMapping("/update/{Id}")
     public ResponseEntity<ResponseDTO> updateEmployeePayroll(@PathVariable("Id") int Id,@Valid @RequestBody EmployeePayrollDTO employeePayrollDTO) {
-        EmployeePayrollData empData = null;
-        empData = employeePayrollService.updateEmployeePayrollData(Id, employeePayrollDTO);
+        EmployeePayrollData empData = employeePayrollService.updateEmployeePayrollData(Id, employeePayrollDTO);
         ResponseDTO responseDTO = new ResponseDTO("Update Employee Payroll Data Successfully", empData);
         log.info("Updated Data ");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
