@@ -1,7 +1,6 @@
 package com.example.employeepayrollapp.entity;
 
 import lombok.Data;
-import org.springframework.http.HttpStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
